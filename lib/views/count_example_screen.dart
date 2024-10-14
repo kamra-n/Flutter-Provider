@@ -1,6 +1,7 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:providerpractice/Providers/count_provider.dart';
+import 'package:providerpractice/view_models/count_provider.dart';
 
 class CountExampleScreen extends StatefulWidget {
   const CountExampleScreen({super.key});
@@ -10,17 +11,12 @@ class CountExampleScreen extends StatefulWidget {
 }
 
 class _CountExampleScreenState extends State<CountExampleScreen> {
-  // int countValue = 0;
-
-  // void increaseCount() {
-  //   countValue = countValue + 1;
-  //   setState(() {});
-  // }
-
   @override
   Widget build(BuildContext context) {
     // final countProvider = Provider.of<CountProvider>(context, listen: true);
-    print('build context');
+    if (kDebugMode) {
+      print('build context');
+    }
     return SafeArea(
         child: Scaffold(
       body: Column(
@@ -41,7 +37,7 @@ class _CountExampleScreenState extends State<CountExampleScreen> {
           Consumer<CountProvider>(
             builder: (context, value, child) {
               return InkWell(
-                onTap: () => value.inCreaseCount(),
+                onTap: () => value.inCreaseCount(context),
                 child: Container(
                   height: 40,
                   width: 100,
